@@ -13,12 +13,13 @@ const setupAutoSaveTimeout = () => {
 const doAutoSave = () => {
 	const action = form.getAttribute('action');
 	const formData = new FormData(form);
+	const data = new URLSearchParams(formData);
 	fetch(action, {
 		method: form.getAttribute('method'),
-		body: JSON.stringify(formData),
+		body: data,
 	})
 		.then((res) => res.json())
-		.then((data) => console.log(JSON.stringify(data)))
+		.then((data) => console.log(data))
 		.catch((err) => console.log('Error saving form data', err));
 };
 
